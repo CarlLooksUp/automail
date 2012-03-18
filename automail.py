@@ -1,14 +1,10 @@
 #!/usr/bin/env python
-from datetime import datetime
 import smtplib
 from email.mime.text import MIMEText
 
-def send_email(mail_settings):
-    today_date = str(datetime.now().date())
-    msg = "Discuss!"
-
+def send_email(mail_settings, subject, body):
     mail_obj = MIMEText(msg)
-    mail_obj['Subject'] = "Meals for week of %s" % today_date 
+    mail_obj['Subject'] = subject
     mail_obj['From'] = mail_settings['sender_addr']
     mail_obj['To'] = mail_settings['to_addrs'][0]
     for addr in mail_settings['to_addrs'][1:]:
@@ -41,6 +37,4 @@ def parse_settings(file_loc):
       settings[key] = value
     return settings
 
-
-send_email(parse_settings("mail_settings.txt"))
 
