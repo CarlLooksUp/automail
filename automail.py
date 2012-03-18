@@ -2,8 +2,8 @@
 import smtplib
 from email.mime.text import MIMEText
 
-def send_email(mail_settings, subject, body):
-    mail_obj = MIMEText(msg)
+def send_email(mail_settings, subject, body, msg_type='plain'):
+    mail_obj = MIMEText(body, msg_type)
     mail_obj['Subject'] = subject
     mail_obj['From'] = mail_settings['sender_addr']
     mail_obj['To'] = mail_settings['to_addrs'][0]
